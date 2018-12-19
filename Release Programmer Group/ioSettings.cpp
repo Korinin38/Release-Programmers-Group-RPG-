@@ -6,7 +6,7 @@ Output::Output()
 {
 	headers.insert("PauseEN");
 	headers.insert("PauseAdvancedEN");
-	headers.insert("PauseRU"); 
+	headers.insert("PauseRU");
 	headers.insert("PauseAdvancedRU");
 
 	phrase["PauseEN"] = "*\nPress Enter to continue\n*\n";
@@ -301,6 +301,42 @@ OutputChapter1::OutputChapter1()
 		+ (string)"Возможно, в будущем вам ещё встретится этот противник.\n";
 }
 
+OutputChapterFast::OutputChapterFast()
+{/*
+	headers.insert("1EN");
+	headers.insert("2EN");
+    */
+	headers.insert("1RU");
+	headers.insert("2RU");
+/*
+	phrase["1EN"] = (string)"If you were sure in your idea before entering the cave, now, stepping inside, you stopped in doubt.\n"
+		+ (string)"Possibly, it manifests a sense of fear of the unknown.\n"
+		+ (string)"Possibly, The plan was not well thought out.\n"
+		+ (string)"So the truth is: darkness often reigns in caves, and you do not have a single source of light with you.\n"
+		+ (string)"Back at the camp site, you made a simple torch. Fortunately, there were enough materials for this.\n"
+		+ (string)"Now you can go.\n";
+
+	phrase["2EN"] = (string)"No, of course not! It is impossible to carelessly walk without a weapon in the place where the monster most likely lurked!\n"
+		+ (string)"But there was no suitable weapon, any weapon.\n"
+		+ (string)"You took a stick out of the fire, a little charred at the end. The corner smoldered, exuding heat.\n"
+		+ (string)"Better than nothing.\n"
+		+ (string)"Now you can go (for sure).\n";*/
+
+	phrase["5EN"] = (string)"To your surprise, the rat turned out to be assertive and reckless.\n"
+		+ (string)"\"Amazing creature without the instinct of self-preservation,\" you thought, and went further into the depths of the cave.\n\n"
+		+ (string)"Perhaps you'll meet this opponent again in the future.\n";
+
+	phrase["1RU"] = (string)"Внезапно у Вас в голове раздался голос.\n"
+		+ (string)"То был не обыкновенный голос внутреннего диалога и не голос рассказчика.\n"
+		+ (string)"\"Кажется, мы не успеваем уложиться в отведённое время. Нужно ускорить процесс\"\n"
+		+ (string)"Внезапно, Вы очутились в светлом коридоре; все Ваши вещи пропали.\n"
+		+ (string)"Перед Вами появились три шара света: в одном из них находились меч и щит, в другом - лук и стрелы, в третьем - магический посох.\n";
+
+	phrase["2RU"] = (string)"Как только Вы взяли оружие, в коридоре появились монстры, один за другим в ряд.\n"
+		+ (string)"Видимо, придётся сражаться.\n"
+
+}
+
 string input::get()
 {
 	string x;
@@ -317,76 +353,108 @@ string input::get()
 
 OutputFight::OutputFight()
 {
+	headers.insert("PTurnEN");
+	headers.insert("MTurnEN");
 	headers.insert("PTurnRU");
 	headers.insert("MTurnRU");
-	headers.insert("VictoryRU");
-	headers.insert("DeathRU");
 
+	phrase["PTurnEN"] = (string)"You go first\n";
+	phrase["MTurnEN"] = (string)"Your opponent goes first\n";
 	phrase["PTurnRU"] = (string)"Вы ходите первым\n";
 	phrase["MTurnRU"] = (string)"Ваш противник ходит первым\n";
-	phrase["VictoryRU"] = (string)"Вы победили в схватке!\n";
-	phrase["DeathRU"] = (string)"Вы погибли.\n";
 }
 
 OutputCreature::OutputCreature()
 {
 	headers.insert("DMGRU");
 	headers.insert("CritRU");
-	headers.insert("HealthRU");
-	headers.insert("ManaRU");
-	headers.insert("MTurnRU");
-	headers.insert("PTurnRU");
 	headers.insert("PHeroListRU");
 	headers.insert("PHeroAttack1RU");
+	headers.insert("PHeroSuperAttack1RU");
 	headers.insert("PWarriorListRU");
-	headers.insert("PWarriorAttackRU");
+	headers.insert("PWarriorAttack1RU");
+	headers.insert("PWarriorSuperAttack1RU");
 	headers.insert("PMageListRU");
-	headers.insert("PMageAttackRU");
-	headers.insert("PAracherListRU");
-	headers.insert("PAracherAttackRU");
+	headers.insert("PMageAttack1RU");
+	headers.insert("PMageSuperAttack1RU");
+	headers.insert("PArcherListRU");
+	headers.insert("PArcherAttack1RU");
+	headers.insert("PArcherSuperAttack1RU");
 	headers.insert("WrongInputRU");
-	headers.insert("NotEnoughManaRU"); 
+	headers.insert("NotEnoughManaRU");
 
-	headers.insert("MRatAttackRU");
+    headers.insert("MRatAttack1RU");
+    headers.insert("MRatAttack2RU");
+    headers.insert("MRatSuperAttack1RU");
+    headers.insert("MGelbinAttack1RU");
+    headers.insert("MGelbinSuperAttack1RU");
+    headers.insert("MSpiderAttack1RU");
+    headers.insert("MSpiderSuperAttackRU");
 
+	//phrase["DMGRU"] = (string)"урона.\n";
+	//phrase["CritRU"] = (string)"(1) Критический урон!\n";
 
-	phrase["DMGRU"] = (string)"урона.\n";
-	phrase["CritRU"] = (string)" Критический урон!\n";
-	phrase["HealthRU"] = (string)"Здоровье: ";
-	phrase["ManaRU"] = (string)"Мана: ";
-	phrase["MTurnRU"] = (string)"Ход противника\n";
-	phrase["PTurnRU"] = (string)"Ваш ход\n";
+	phrase["PHeroListRU"] = (string)"(1) Атаковать\n"
+        + (string)"(2) Суператака (стоимость: 2 маны)\n";
 
-	phrase["PHeroListRU"] = (string)"(1) Атаковать\n";
-	phrase["PHeroAttack1RU"] = (string)"(1) Вы тыкнули во врага палкой и нанесли ";
+	phrase["PHeroAttack1RU"] = (string)"Вы тыкнули во врага палкой и нанесли ";
 
-	phrase["PWarriorListRU"] = (string)"(1) Атаковать\n";
-	phrase["PWarriorAttack1RU"] = (string)"Вы тыкнули во врага палкой и нанесли ";
+	phrase["PHeroSuperAttack1RU"] = (string)"Вы сделали шаг назад;"
+        + (string)"размахнувшись, Вы ударили врага сверху и нанесли ";
 
-	phrase["PMageListRU"] = (string)"(1) Атаковать\n";
-	phrase["PMageAttack1RU"] = (string)"Вы тыкнули во врага палкой и нанесли ";
+	phrase["PWarriorListRU"] = (string)"(1) Атаковать\n"
+        + (string)"(2) Суператака (стоимость: 1/2 от максимального запаса маны)\n";
+
+	phrase["PWarriorAttack1RU"] = (string)"Вы ударили противника мечом и нанесли ";
+
+	phrase["PWarriorSuperAttack1RU"] = (string)"Вы разбегаетесь и тараните врага своим телом;\n"
+        + (string)"Этим ударом Вы сбили противника с ног и нанесли ";
+
+	phrase["PMageListRU"] = (string)"(1) Атаковать\n"
+        + (string)"(2) Суператака (стоимость: 5 маны)\n";
+
+	phrase["PMageAttack1RU"] = (string)"Вы вызвали посохом магическую вспышку и нанесли ";
+
+	phrase["PMageSuperAttack1RU"] = (string)"Вы представляете большой огненный шар;\n"
+        + (string)"он материализуется и сбивает противника с ног; этим Вы нанесли ";
 
 	phrase["PArcherListRU"] = (string)"(1) Атаковать\n";
-	phrase["PArcherAttack1RU"] = (string)"Вы тыкнули во врага палкой и нанесли ";
+	phrase["PArcherAttack1RU"] = (string)"Вы пронзили врага стрелой и нанесли ";
+	phrase["PArcherSuperAttack1RU"] = (string)"Вы концентрируетесь на противнике и находите его слабое место;\n"
+        + (string)"стрела, попав туда, наносит критический урон и сбивает противника с ног; Вы нанесли ";
 
-	phrase["WrongInputRU"] = (string)"Вы никак не можете сосредоточиться на схватке.\n"
-		+(string)"Необходимо выбрать один из возможных вариантов:\n";
+	phrase["MRatAttack1RU"] = (string)"Крыса кусает Вас и наносит ";
+	phrase["MRatAttack2RU"] = (string)"острые зубы впиваются в мягкую плоть Вашей ноги; крыса наносит Вам ";
 
-	phrase["NotEnoughManaRU"] = (string)"(1) Не хватает маны!\n";
+	phrase["MRatSuperAttack2RU"] = (string)"Крыса кусает Вас.\n"
+        + (string)"Внезапно, вы заболеваете тифом, чумой, сифилисом, раздвоением личности и синдромом третьей руки.\n"
+        + (string)"Вы решаете сбежать из подземелья и потратить остаток жизни со своей семьёй.\n"
+        + (string)"Через три года (или дня) Вы становитесь настолько слабы, что не можете встать с кровати.\n"
+        + (string)"Ваша дочь, Диана, плачет на Вашей груди.\n";
 
-	phrase["MRatAttackRU"] = (string)"Крыса атакует и наносит";
+	phrase["MGelbinAttack1RU"] = (string)"Гелбин бьёт Вас дубинкой и наносит ";
+	phrase["MGelbinSuperAttack1RU"] = (string)"Гелбин готовит следующую атаку;\n"
+        + (string)"Он наносит усиленный удар: Вы получаете ";
+
+	phrase["MSpiderAttack1RU"] = (string)"Паук кусает Вас и наносит ";
+	phrase["MSpiderSuperAttackRU"] = (string)"Паук стреляет в Вас паутиной;\n"
+        + (string)"Паутина покрывает вас: Вы теряете ловкость!";
+
+	//phrase["WrongInputRU"] = (string)"Вы никак не можете сосредоточиться на схватке.";
+
+	//phrase["NotEnoughManaRU"] = (string)"(1) Не хватает маны!\n";
 }
 
 void OutputCreature::callHealth(int healthCur, int health)
 {
-	call("Health", 1);
+	call("Health");
 	cout << healthCur << "/" << health << endl;
 }
 
 
 void OutputCreature::callMana(int manaCur, int mana)
 {
-	call("Mana", 1);
+	call("Mana");
 	cout << manaCur << "/" << mana << endl;
 }
 
@@ -397,7 +465,7 @@ void OutputCreature::callDamage(int damage)
 
 void OutputCreature::callAttack(string str, int damage, int randNumber)
 {
-	str += to_string(RPGUtils::getRandom(1, randNumber));
+	str += to_string(RPGUtils::getRandom(1, randNumber)) + lang;
 	call(str, 1);
 	callDamage(damage);
 	call("DMG", 1);

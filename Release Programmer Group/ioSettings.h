@@ -22,7 +22,7 @@ public:
     void clearScreen();
     void setLang(string lang);
     void call(string phr, int tru = 0);
-	string pause(int x = 1);
+	string pause(int x = 0);
 	string getLang();
 };
 
@@ -41,6 +41,11 @@ class OutputChapter1 : public Output
 {
 public:
 	OutputChapter1();
+};
+class OutputChapterFast : public Output
+{
+public:
+	OutputChapterFast();
 };
 
 class OutputFight : public Output

@@ -21,9 +21,10 @@ protected:
 	bool symbiote = 0;
 	Debuff* appliedDebuff = nullptr;
 public:
-	Hero(int strength = 2, int agility = 2, int intelligence = 2, int health = 10, int mana = 0);
+	Hero(int strength = 1, int agility = 1, int intelligence = 1, int health = 10, int mana = 2);
 	void newTurn();
 	void getAttack(Creature* enemy);
+	void setDamage(int damage);
 
 	bool hasUpgrades();
 	void upStrength();

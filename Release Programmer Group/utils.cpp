@@ -13,8 +13,17 @@ int RPGUtils::getRandom(int from, int to)
 
 void RPGUtils::getDamageScatter(int* damage, int strength)
 {
+    int tmp;
 	if (strength > 0)
-		*damage = *damage + RPGUtils::getRandom((10-strength)/3, 0);
+        tmp = *damage + RPGUtils::getRandom((10-strength)/3, 0);
+    if (tmp > 1)
+    {
+        *damage = tmp;
+    }
+    else
+    {
+        *damage = 1;
+    }
 }
 
 bool RPGUtils::calculateCrit(int damage, int agility)

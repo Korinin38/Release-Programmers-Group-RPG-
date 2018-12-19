@@ -9,20 +9,14 @@ AttackType Rat::calculateAttack()
 
 void Rat::attack(Creature * enemy)
 {
-	//Rat bites you and deal 'damage'; 
 	enemy->setDamage(damage);
-	output->callAttack("MRatAttack", damage);
+	output->callAttack("MRatAttack", damage, 2);
 }
 
 bool Rat::superAttack(Creature * enemy)
 {
-	//Rat bites you. 
-	//Suddenly, you become infected with typhus, plague, syphilis, split personality and third hand syndrome.
-	//You decide to escape from the dungeon and spend the rest of your life with your family.
-	//After 3 years (or days, i think) you become unable to get out of bed.
-	//Your daughter, Diana, cries on your breast. 
-	//You died.
-	enemy->setDamage(enemy->getHealth() + 1);
+	enemy->setDamage(enemy->getHealth()*100);
+	output->call("MRatSuperAttack");
 	return true;
 }
 
@@ -52,8 +46,8 @@ AttackType Gelbin::calculateAttack()
 
 void Gelbin::attack(Creature * enemy)
 {
-	//Gelbin hits you with club and deal 'damage'; 
 	enemy->setDamage(damage);
+    output->callAttack("MGelbinAttack", damage);
 }
 
 bool Gelbin::superAttack(Creature * enemy)
@@ -61,9 +55,8 @@ bool Gelbin::superAttack(Creature * enemy)
 	if (manaCur >= 4)
 	{
 		manaCur -= 4;
-		//Gelbin prepares his attack;
-		//He strilkes you and deal additional 'damage'! 
 		enemy->setDamage(damage + 3);
+        output->callAttack("MGelbinSuperAttack", damage + 3);
 		return true;
 	}
 	else
@@ -106,8 +99,9 @@ AttackType Spider::calculateAttack()
 
 void Spider::attack(Creature * enemy)
 {
-	//Spider bites you and deal 'damage'; 
+	//Spider bites you and deal 'damage';
 	enemy->setDamage(damage);
+    output->callAttack("MSpiderAttack", damage);
 }
 
 bool Spider::superAttack(Creature * enemy)
@@ -115,8 +109,9 @@ bool Spider::superAttack(Creature * enemy)
 	if (manaCur >= 3)
 	{
 		manaCur -= 3;
-		//Spider shoots with web, covering you and debuffing! 
+		//Spider shoots with web, covering you and debuffing!
 		inflict(enemy);
+		output->call("MSpiderSuperAttack");
 		return true;
 	}
 	else

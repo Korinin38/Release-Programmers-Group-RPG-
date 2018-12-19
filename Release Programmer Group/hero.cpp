@@ -21,14 +21,13 @@ void Hero::newTurn()
 	{
 		calculateDebuff();
 	}
-	output->call("PTurn");
 	output->callHealth(healthCur, health);
 	output->callMana(manaCur, mana);
 }
 
 void Hero::getAttack(Creature* enemy)
 {
-	output->call("PHeroList", 1);
+	output->call("PHeroList");
 	string str = input::get();
 	bool b = true;
 	while (b)
@@ -56,6 +55,12 @@ void Hero::getAttack(Creature* enemy)
 			str = input::get();
 		}
 	}
+}
+
+void Hero::setDamage(int damage)
+{
+    RPGUtils::getDamageScatter(damage, 4-agility/3)
+	healthCur -= damage;
 }
 
 bool Hero::hasUpgrades()
@@ -124,7 +129,7 @@ bool Hero::superAttack(Creature* enemy)
 		{
 			damage += symDamage;
 		}
-		damage += mana / 2;
+		damage += 2;
 		if (RPGUtils::calculateCrit(damage, agility))
 		{
 			crit = true;

@@ -35,7 +35,7 @@ void Story::start()
 			stage++;
 		case 5:
 			oS->call("5");
-			oS->pause(0);
+			oS->pause();
 			stage++;
 			chapter = 1;
 			stage = 1;
@@ -57,26 +57,47 @@ void Story::start()
 			stage++;
 		case 3:
 			oS->call("3");
-			oS->pause(0);
-			oS->clearScreen();
 			stage++;
 		case 4:
 			oS->call("4");
-			oS->pause(0);
-			oS->clearScreen();
 			stage++;
 		case 5:
 			currentMonster = new Rat();
 			fight();
 		case 6:
 			oS->call("5");
-			oS->pause(0);
+			oS->pause();
 			stage++;
 			chapter = 1;
 			stage = 1;
 			free(oS);
 		}
 	}
+	case 2:
+    {
+		oS = new OutputChapterFast();
+		oS->setLang(lang);
+		oS->clearScreen();
+		switch (stage)
+		{
+		case 1:
+			oS->call("1");
+			stage++;
+		case 2:
+			oS->call("2");
+			stage++;
+		case 3:
+			currentMonster = new Gelbin();
+			fight();
+		case 4:
+			currentMonster = new Spider();
+			fight();
+		case 5:
+		    stage++;
+		case 6:
+		    free(oS);
+		}
+    }
 	}
 	if (chapter == 1)
 	{
@@ -119,24 +140,19 @@ bool Story::fight()
 		{
 			mainCharacter->newTurn();
 			mainCharacter->getAttack(currentMonster);
-			oS->pause(0);
 		}
 		else
 		{
 			currentMonster->newTurn();
 			currentMonster->getAttack(mainCharacter);
-			oS->pause(0);
 		}
 		turn = turn % 2 + 1;
-		oS->clearScreen();
 	}
 	if (mainCharacter->getHealth() > 0)
 	{
-		oF->call("Victory");
 		currentMonster->getDrop();
 		return true;
 	}
-	oF->call("Death");
 	return false;
 }
 
@@ -178,7 +194,7 @@ void Story::chooseClass()
 			s += b;
 			oS->call(s);
 			c = input::get();
-			if (c == "y" or c == "Y" or c == "Ó" or c == "ó")
+			if (c == "y" or c == "Y" or c == "Ñƒ" or c == "Ð£")
 			{
 				b = '-';
 			}
